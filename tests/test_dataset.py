@@ -8,7 +8,7 @@ from mockdataset.dataset import Dataset
 from mockdataset.column import Column
 
 
-def test_value_generator(row_number, previous_row_values):
+def test_value_generator(total_rows, row_number, previous_row_values):
     """
     test function for generating column values
 

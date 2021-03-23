@@ -17,7 +17,7 @@ class Dataset():
 
     def __init__(self,
                  columns: List[Column],
-                 number_of_rows: int = 0):
+                 number_of_rows: int):
         """
         constructor for the Dataset class
 
@@ -29,6 +29,9 @@ class Dataset():
         number_of_rows : int
             The number of rows in the dataset
         """
+        if number_of_rows <= 0:
+            raise ValueError("Datasets must contain at least 1 row")
+
         self.columns = columns
         self.number_of_rows = number_of_rows
         self._current_row = 0
@@ -70,6 +73,7 @@ class Dataset():
 
         for column in self.columns:
             next_value = column.create_value(
+                total_rows=self.number_of_rows,
                 row_number=row_number,
                 previous_row_values=column_values,
             )
